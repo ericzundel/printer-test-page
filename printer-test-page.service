@@ -1,0 +1,27 @@
+# systemd user service for sending a test image to the printer to keep
+# the ink heads from clogging
+# Install to: ~/.config/systemd/user/printer-test-page.service
+#
+# Adjust WorkingDirectory and ExecStart* below if the project is not at
+# /data/dailyspaceimage. Then enable via the companion .timer unit:
+#
+#   mkdir -p ~/.config/systemd/user
+#   cp printer-test-page.service printer-test-page.timer ~/.config/systemd/user/
+#   systemctl --user daemon-reload
+#   systemctl --user enable --now printer-test-page.timer
+#   systemctl --user status printer-test-page.timer
+#
+
+[Unit]
+Description=Monthly printer test page to keep heads from clogging
+After=network.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/Src/printer-test-page
+# Generate a freshly date/machine-stamped page, then send it to the printer.
+ExecStart=%h/Src/printer-test-page/.venv/bin/printer-test-page -o test-page.pdf
+ExecStart=lpr -P ET-3950 test-page.pdf
+StandardOutput=journal
+StandardError=journal
+
