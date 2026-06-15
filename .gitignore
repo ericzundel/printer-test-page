@@ -13,3 +13,7 @@ dist/
 
 # Generated output
 test-page.pdf
+
+
+# Local config
+.env

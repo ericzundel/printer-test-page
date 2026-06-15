@@ -19,9 +19,10 @@ After=network.target
 [Service]
 Type=oneshot
 WorkingDirectory=%h/Src/printer-test-page
+EnvironmentFile=-%h/Src/printer-test-page/.env
 # Generate a freshly date/machine-stamped page, then send it to the printer.
 ExecStart=%h/Src/printer-test-page/.venv/bin/printer-test-page -o test-page.pdf
-ExecStart=lpr -P ET-3950 test-page.pdf
+ExecStart=lpr -P ${PRINTER_NAME} test-page.pdf
 StandardOutput=journal
 StandardError=journal
 
