@@ -1,7 +1,7 @@
 # printer-test-page
 
 Generate an inkjet printer test page as a PDF. Built to be printed on a schedule
-(e.g. monthly via the included systemd units) so the print heads lay down every
+(e.g. weekly via the included systemd units) so the print heads lay down every
 ink channel regularly and don't clog.
 
 Each page is stamped with the **machine name** that generated it and the
@@ -35,7 +35,7 @@ uv run printer-test-page -o /tmp/page.pdf --page-size a4
 
 ## Printing on a schedule
 
-The repo ships systemd **user** units that print the page monthly:
+The repo ships systemd **user** units that print the page weekly:
 
 ```bash
 mkdir -p ~/.config/systemd/user

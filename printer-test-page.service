@@ -13,7 +13,7 @@
 #
 
 [Unit]
-Description=Monthly printer test page to keep heads from clogging
+Description=Weekly printer test page to keep heads from clogging
 After=network.target
 
 [Service]

@@ -2,12 +2,12 @@
 # Install alongside printer-test-page.service (see that file for instructions).
 
 [Unit]
-Description=Monthly printer test page to keep heads from clogging
+Description=Weekly printer test page to keep heads from clogging
 
 [Timer]
 # See man systemd.time
-# Run on the 15th of every month at 8am
-OnCalendar=*-*-15 08:00:00
+# Run every Monday at 8am
+OnCalendar=Mon *-*-* 08:00:00
 Persistent=true
 
 [Install]
