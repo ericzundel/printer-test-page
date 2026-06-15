@@ -44,9 +44,10 @@ systemctl --user daemon-reload
 systemctl --user enable --now printer-test-page.timer
 ```
 
-The service generates the PDF and sends it to the printer with `lpr`. Adjust the
-printer name (`-P ET-3950`) and `WorkingDirectory` in the unit file to match your
-setup.
+The service generates the PDF and sends it to the printer with `lpr`, printing
+duplex (`-o sides=two-sided-long-edge`) so the two pages land on the front and
+back of a single sheet. Adjust the printer name (`-P ET-3950`) and
+`WorkingDirectory` in the unit file to match your setup.
 
 ## Development
 
