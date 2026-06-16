@@ -19,10 +19,13 @@ After=network.target
 [Service]
 Type=oneshot
 WorkingDirectory=%h/Src/printer-test-page
+# Default to duplex; override PRINT_SIDES (or PRINTER_NAME) in .env. Valid
+# values: two-sided-long-edge, two-sided-short-edge, one-sided.
+Environment=PRINT_SIDES=two-sided-long-edge
 EnvironmentFile=-%h/Src/printer-test-page/.env
 # Generate a freshly date/machine-stamped page, then send it to the printer.
 ExecStart=%h/Src/printer-test-page/.venv/bin/printer-test-page -o test-page.pdf
-ExecStart=lpr -P ${PRINTER_NAME} test-page.pdf
+ExecStart=lpr -P ${PRINTER_NAME} -o sides=${PRINT_SIDES} test-page.pdf
 StandardOutput=journal
 StandardError=journal
 
